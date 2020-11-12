@@ -21,6 +21,11 @@ def search_query(item):
     else :
         return (results)
 
+def check_track(name):
+    if not "REMIX" in (name.upper()) and not "REMASTER" in (name.upper()):
+        return (True)
+    return (False)
+
 sp = spotipy.Spotify(auth=token)
 playlist = sp.user_playlist_create(SPOTIFY["username"], extras["playlist_name"], public=True, collaborative=False, description='')
 with open('data') as json_file:
@@ -32,7 +37,7 @@ with open('data') as json_file:
             break
         results = search_query(p)
         for idx, track in enumerate(results['tracks']['items']):
-            if not 'Remix' in track['name']:
+            if check_track(track['name']):
                 tracks.append(track['uri'])
                 break
 sp.playlist_add_items(playlist['id'], tracks, position=None)
