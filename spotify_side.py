@@ -3,6 +3,7 @@ import json
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
 from config import SPOTIFY
+from config import extras
 
 token = util.prompt_for_user_token(
     username=SPOTIFY["username"],
@@ -21,17 +22,17 @@ def search_query(item):
         return (results)
 
 sp = spotipy.Spotify(auth=token)
-total = sp.user_playlist_create(SPOTIFY["username"], 'API-test1', public=True, collaborative=False, description='')
+playlist = sp.user_playlist_create(SPOTIFY["username"], extras["playlist_name"], public=True, collaborative=False, description='')
 with open('data') as json_file:
     data = json.load(json_file)
     results = search_query(data[0])
     tracks = []
     for p in data:
-        if len(tracks) > 100:
+        if len(tracks) > 99:
             break
         results = search_query(p)
         for idx, track in enumerate(results['tracks']['items']):
             if not 'Remix' in track['name']:
                 tracks.append(track['uri'])
                 break
-sp.playlist_add_items(total['id'], tracks, position=None)
+sp.playlist_add_items(playlist['id'], tracks, position=None)

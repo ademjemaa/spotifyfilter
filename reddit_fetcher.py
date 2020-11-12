@@ -3,6 +3,7 @@ import praw
 import json
 from praw.models import MoreComments
 from config import API
+from config import extras
 import re
 
 def find_hyperlink(submiss) :
@@ -56,7 +57,7 @@ reddit = praw.Reddit(
     username=   API["username"],
     password= API["password"],
 )
-submission = reddit.submission(id="jq53sv", limit=100)
+submission = reddit.submission(id=extras["reddit_url_id"])
 submission.comment_sort = 'best'
 filteredlist = []
 for top_level_comment in submission.comments:
