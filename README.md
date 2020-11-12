@@ -2,6 +2,37 @@
 
 A spotify playlist maker through reddit top comments
 
+HOW TO RUN:
+
+-install both praw and spotipy with pip
+
+-create a config file where you include the following :
+{
+
+extras =  {
+    "reddit_url_id" : "example",
+    "playlist_name" : "example"
+}
+
+API = {
+    "client_id": "reddit client id",       
+    "client_secret": "reddit client secret",
+    "user_agent": "user agent title",
+    "username": "reddit username",
+    "password": "reddit username's password"
+}
+
+SPOTIFY ={
+    "id" : "spotify client id",
+    "secret" : "spotify client secret",
+    "scope" : "playlist-modify-public",
+    "username" : "spotify username",
+    "redirect_uri" : "http://localhost"
+    }
+}
+
+run reddit_fetcher.py first and then run spotify.side.py when you have your JSON file ready
+
 To-Do List:
 
 -make sure the same song isnt listed more than once in each playlist(WIP)
