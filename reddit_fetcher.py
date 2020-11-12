@@ -25,7 +25,6 @@ def edit_special_chars(submiss) :
     index = var.find('EDIT')
     if (index > 0):
         submiss = submiss[:index]
-    print(submiss)
     submiss = submiss.replace('by', '')
     submiss = submiss.replace(' ', '+')
     return (submiss)
@@ -57,7 +56,7 @@ reddit = praw.Reddit(
     username=   API["username"],
     password= API["password"],
 )
-submission = reddit.submission(id="jq53sv")
+submission = reddit.submission(id="jq53sv", limit=100)
 submission.comment_sort = 'best'
 filteredlist = []
 for top_level_comment in submission.comments:

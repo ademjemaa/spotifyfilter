@@ -1,4 +1,7 @@
 # Byte-compiled / optimized / DLL files
+.cache
+.cache-ademzeus
+data
 config.py
 __pycache__/
 *.py[cod]
